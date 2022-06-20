@@ -1158,6 +1158,10 @@ select {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.resize-none {
+  resize: none;
+}
+
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -1448,6 +1452,10 @@ select {
   padding-left: 2.5rem;
 }
 
+.pt-12 {
+  padding-top: 3rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -1666,6 +1674,14 @@ main {
   100% {
     transform: translate(-50%, -110%);
   }
+}
+
+.file\:m-2::-webkit-file-upload-button {
+  margin: 0.5rem;
+}
+
+.file\:m-2::file-selector-button {
+  margin: 0.5rem;
 }
 
 .hover\:bg-gray-100:hover {

@@ -11,38 +11,38 @@
         <main class="flex">
             <%- include('../partials/sidebar') -%>
 
-                <div class="container">
-                    <h1>Add a new program</h1>
+                <div class="container py-12">
+                    <h1 class="heading text-4xl">Add a new program</h1>
 
-                    <form action="/programs/add" method="post" enctype="multipart/form-data">
-
-                        <div>
+                    <form class="w-1/2" action="/programs/add" method="post" enctype="multipart/form-data">
+                        <div class="form-control">
                             <label for="title">Program Title</label>
                             <input type="text" name="title" id="title" required>
                         </div>
 
-                        <div>
+                        <div class="form-control">
                             <label for="description">Description</label>
-                            <textarea name="description" id="description" cols="30" rows="5" required></textarea>
+                            <textarea class="resize-none" name="description" id="description" cols="30" rows="5"
+                                required></textarea>
                         </div>
 
-                        <div>
+                        <div class="form-control">
                             <label for="duration">Duration</label>
                             <input type="text" name="duration" id="duration" required>
                         </div>
 
-                        <div>
+                        <div class="form-control">
                             <label for="price">Price</label>
                             <input type="number" name="price" id="price" required>
                         </div>
 
-                        <div>
+                        <div class="form-control">
                             <label for="image">Photo</label>
-                            <input type="file" name="image" id="image" accept="image/*">
+                            <input class="file:m-2" type="file" name="image" id="image" accept="image/*">
                         </div>
 
 
-                        <button type="submit">Add program</button>
+                        <button class="btn mt-2" type="submit">Add program</button>
                     </form>
 
                 </div>

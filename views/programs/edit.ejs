@@ -11,35 +11,35 @@
         <main class="flex">
             <%- include('../partials/sidebar') -%>
 
-                <div class="container">
-                    <h1>Edit a program</h1>
+                <div class="container py-12">
+                    <h1 class="heading text-4xl">Edit a program</h1>
 
-                    <form action="/programs/update" method="post">
+                    <form class="w-1/2" action="/programs/update" method="post">
                         <input type="hidden" name="program_id" value="<%= program.id %>">
 
-                        <div>
+                        <div class="form-control">
                             <label for="title">Program Title</label>
                             <input type="text" name="title" id="title" value="<%= program.title %>" required>
                         </div>
 
-                        <div>
+                        <div class="form-control">
                             <label for="description">Description</label>
                             <textarea name="description" id="description" cols="30" rows="5" required>
 <%= program.description %>
                             </textarea>
                         </div>
 
-                        <div>
+                        <div class="form-control">
                             <label for="duration">Duration</label>
                             <input type="text" name="duration" id="duration" value="<%= program.duration %>" required>
                         </div>
 
-                        <div>
+                        <div class="form-control">
                             <label for="price">Price</label>
                             <input type="number" name="price" id="price" value="<%= program.price %>" required>
                         </div>
 
-                        <button type="submit">Add program</button>
+                        <button class="btn mt-2" type="submit">Save Changes</button>
                     </form>
 
                 </div>

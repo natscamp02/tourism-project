@@ -11,31 +11,31 @@
         <main class="flex">
             <%- include('../partials/sidebar') -%>
 
-                <div class="container">
-                    <h1>Create a tour company</h1>
+                <div class="container py-12">
+                    <h1 class="heading text-4xl">Create a tour company</h1>
 
-                    <form action="/tour-companies/add" method="post">
-                        <div>
+                    <form class="w-1/2" action="/tour-companies/add" method="post">
+                        <div class="form-control">
                             <label for="company_name">Company Name</label>
                             <input type="text" name="company_name" id="company_name" required>
                         </div>
 
-                        <div>
+                        <div class="form-control">
                             <label for="street_address">Street Address</label>
                             <input type="text" name="street_address" id="street_address" required>
                         </div>
 
-                        <div>
+                        <div class="form-control">
                             <label for="city">City</label>
                             <input type="text" name="city" id="city" required>
                         </div>
 
-                        <div>
+                        <div class="form-control">
                             <label for="parish">Parish</label>
                             <input type="text" name="parish" id="parish" required>
                         </div>
 
-                        <button type="submit">Add company</button>
+                        <button class="btn mt-2" type="submit">Add company</button>
                     </form>
 
                 </div>
