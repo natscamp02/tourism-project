@@ -32,13 +32,13 @@ router.get('/cart', (req, res, next) => {
 });
 router.get('/cart/add/:program_id', (req, res, next) => {
 	if (req.session.cart) {
-		if (!req.session.cart.includes(req.params.program_id)) req.session.cart.push(req.params.program_id);
+		if (!req.session.cart.includes(req.params.program_id)) req.session.cart?.push(req.params.program_id);
 	} else req.session.cart = [req.params.program_id];
 
 	res.redirect('/browse');
 });
 router.get('/cart/remove/:program_id', (req, res, next) => {
-	req.session.cart = req.session.cart.filter((p) => p !== req.params.program_id);
+	req.session.cart = req.session.cart?.filter((p) => p !== req.params.program_id);
 	res.redirect('back');
 });
 
@@ -66,7 +66,7 @@ router.post('/make-reservation', (req, res, next) => {
 		[data.program_id, data.first_name, data.last_name, data.group_size, data.excursion_date],
 		catchSQLErrors(next, (result) => {
 			req.flash('success', 'Reservation created successfully');
-			req.session.cart = req.session.cart.filter((i) => i !== req.body.program_id);
+			req.session.cart = req.session.cart?.filter((i) => i !== req.body.program_id);
 
 			res.redirect('/browse');
 		})

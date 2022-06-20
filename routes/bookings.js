@@ -16,7 +16,7 @@ function createInvoiceAndBooking(data, req, _res, next, onSuccess) {
 
 	const invoiceData = {
 		// Generate a random invoice number
-		voucher_num: Date.now().toString().slice(-8),
+		voucher_num: Date.now().toString().slice(-8).padStart(8, '0'),
 
 		// Calculate total amount
 		total_amount: (Number.parseFloat(data.price) / 2) * queryObj.group_size,
@@ -75,22 +75,16 @@ router.get('/', (req, res, next) => {
 	if (req.session.user.role !== 'admin') queryStr += ' AND urs.tour_company_id = ' + req.session.user.company_id;
 
 	if (req.query.search) {
-		switch (req.query.filter) {
-			case 'name':
-				const [f_name, l_name] = req.query.search.split(' ');
-				queryStr +=
-					" AND bks.guest_first_name LIKE '%" +
-					(f_name || '') +
-					"%' AND bks.guest_last_name LIKE '%" +
-					(l_name || '') +
-					"%'";
-				break;
-			case 'voucher_num':
-				queryStr += ' AND bks.voucher_num = ' + req.query.search;
-				break;
-
-			default:
-				break;
+		if (!parseInt(req.query.search)) {
+			const [f_name, l_name] = req.query.search.split(' ');
+			queryStr +=
+				" AND bks.guest_first_name LIKE '%" +
+				(f_name || '') +
+				"%' AND bks.guest_last_name LIKE '%" +
+				(l_name || '') +
+				"%'";
+		} else {
+			queryStr += ' AND bks.voucher_num = ' + req.query.search;
 		}
 	}
 

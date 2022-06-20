@@ -3,12 +3,43 @@
 @tailwind utilities;
 
 @layer components {
-	.btn {
-		@apply inline-flex items-center gap-2 py-3 px-6 rounded-sm text-white bg-primary transition hover:brightness-95;
-	}
-
 	.heading {
 		@apply font-heading text-5xl mb-8;
+	}
+
+	.btn {
+		@apply leading-none inline-flex items-center gap-1 py-3 px-6 rounded-md text-white bg-primary-100 transition hover:brightness-95;
+	}
+
+	.btn-outline {
+		@apply btn ring-2 ring-current ring-inset text-primary-100 bg-transparent hover:bg-gray-100;
+	}
+
+	.form-group {
+		@apply flex gap-12 justify-between;
+	}
+
+	.form-group > .form-control {
+		@apply w-full;
+	}
+
+	.form-control {
+		@apply grid gap-1 mb-6;
+	}
+
+	.form-control > label {
+		@apply text-gray-500 w-fit;
+	}
+	.form-control > :is(input, select, textarea) {
+		@apply rounded-md bg-gray-100 border-transparent focus:border-primary-100 focus:bg-white focus:ring-0;
+	}
+
+	.nav-item {
+		@apply w-full;
+	}
+
+	.nav-link {
+		@apply px-6 py-3 inline-flex gap-1 items-center w-full bg-white bg-opacity-10 transition hover:bg-opacity-20;
 	}
 
 	.alert {

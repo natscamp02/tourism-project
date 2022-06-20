@@ -9,24 +9,27 @@
     <%- include('../partials/header') -%>
         <%- include('../partials/alerts') -%>
 
-            <main>
-                <h1>Login as Admin</h1>
+            <main class="grid place-items-center bg-[url('/images/pattern-1.svg')] bg-cover bg-no-repeat">
+                <div class="bg-white w-max rounded-lg py-8 px-12">
+                    <h1 class="heading text-center">Login as Admin</h1>
 
-                <p>Don't have an account yet? <a href="/auth/signup">Sign up here</a>.</p>
+                    <form action="/auth/login" method="post">
+                        <div class="form-control">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" id="username" required>
+                        </div>
 
-                <form action="/auth/login" method="post">
-                    <div>
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username" required>
-                    </div>
+                        <div class="form-control">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" required>
+                        </div>
 
-                    <div>
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" required>
-                    </div>
+                        <p class="text-gray-400 mb-2">Don't have an account yet? <a
+                                class="text-secondary hover:underline" href="/auth/signup">Sign up here</a>.</p>
 
-                    <button type="submit">Login</button>
-                </form>
+                        <button class="btn mt-4" type="submit">Login</button>
+                    </form>
+                </div>
             </main>
 
             <%- include('../partials/footer') -%>
