@@ -1326,6 +1326,10 @@ select {
   background-image: url('/images/pattern-1.svg');
 }
 
+.bg-\[url\(\'\/images\/pattern-2\.svg\'\)\] {
+  background-image: url('/images/pattern-2.svg');
+}
+
 .bg-cover {
   background-size: cover;
 }
