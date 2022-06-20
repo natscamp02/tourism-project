@@ -8,90 +8,18 @@
 <body>
     <%- include('../partials/alerts') -%>
 
-        <main class="flex">
+        <main class="dashboard">
             <%- include('../partials/sidebar') -%>
 
-                <div class="container">
-                    <h1 class="">Bookings - Invoice</h1>
-
-                    <div>
-                        <!-- Main Company Name and Address -->
-                        <div>
-                            <h2>Dolphin Cove</h2>
-                            <p>Belmont Road, Ocho Rios</p>
-                            <p>St. Ann</p>
-                        </div>
-
-                        <!-- Billing Company Name and Address -->
-                        <div>
-                            <h2>
-                                <%= data.company_name %>
-                            </h2>
-                            <p>
-                                <%= data.street_address %>, <%= data.city %>
-                            </p>
-                            <p>
-                                <%= data.parish %>
-                            </p>
-                        </div>
-
-                        <!-- Invoice Num. and Dates -->
-                        <div>
-                            <p>Voucher #:
-                                <span>
-                                    <%= data.voucher_num %>
-                                </span>
-                            </p>
-                            <p>Date Created:
-                                <span>
-                                    <%= data.created_at.toLocaleDateString() %>
-                                </span>
-                            </p>
-                            <p>Due Date:
-                                <span>
-                                    <%= data.due_date.toLocaleDateString() %>
-                                </span>
-                            </p>
-                        </div>
-
-                        <!-- Invoice Items and Total -->
-                        <div>
-                            <table>
-                                <tr>
-                                    <th>Program Title</th>
-                                    <th>Group Size</th>
-                                    <th>Price</th>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <%= data.title %>
-                                    </td>
-                                    <td>
-                                        <%= data.group_size %>
-                                    </td>
-                                    <td>
-                                        <%= data.price %>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-right" colspan="2">Total</td>
-                                    <td>
-                                        <%= data.total_amount %>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <% if (locals.user.role==='admin' && !data.confirmed) { %>
-                            <button class="btn btn-confirm">Confirm Payment</button>
-
-                            <form class="hidden" id="confirmation-form" action="/bookings/invoice/confirm-payment"
-                                method="post">
+                <div class="container py-16">
+                    <% if (locals.user.role==='admin' && !data.confirmed) { %>
+                        <div class="flex gap-4 float-right">
+                            <form class="hidden gap-2 items-center" id="confirmation-form"
+                                action="/bookings/invoice/confirm-payment" method="post">
                                 <input type="hidden" name="voucher_num" id="voucher_num"
                                     value="<%= data.voucher_num %>">
 
-                                <div>
+                                <div class="form-control flex items-center mb-0">
                                     <label for="payment_type">Payment Type</label>
                                     <select name="payment_type" id="payment_type">
                                         <option value="cash">Cash</option>
@@ -100,25 +28,123 @@
                                     </select>
                                 </div>
 
-                                <button type="submit">Confirm</button>
+                                <div>
+                                    <button class="btn p-3" type="submit">Confirm</button>
+                                    <button class="btn-outline p-3" type="button" id="btn-cancel">Cancel</button>
+                                </div>
                             </form>
+
+                            <button class="btn" id="btn-confirm">Confirm Payment</button>
+                        </div>
+                        <% } else if(data.confirmed) { %>
+                            <div class="float-right">
+                                <span class="text-green-600 text-xl inline-flex gap-1 items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    Confirmed
+                                </span>
+                            </div>
                             <% } %>
-                    </div>
+
+                                <h1 class="heading mb-12">Bookings - Invoice</h1>
+
+                                <div class="flex justify-between mb-12">
+                                    <!-- Main Company Name and Address -->
+                                    <div>
+                                        <h2 class="text-2xl mb-1">Dolphin Cove</h2>
+                                        <p>Belmont Road, Ocho Rios</p>
+                                        <p>St. Ann</p>
+                                    </div>
+
+                                    <!-- Billing Company Name and Address -->
+                                    <div>
+                                        <h2 class="text-2xl mb-1">
+                                            <%= data.company_name %>
+                                        </h2>
+                                        <p>
+                                            <%= data.street_address %>, <%= data.city %>
+                                        </p>
+                                        <p>
+                                            <%= data.parish %>
+                                        </p>
+                                    </div>
+
+                                    <!-- Invoice Num. and Dates -->
+                                    <div>
+                                        <p>
+                                            <span class="font-semibold">
+                                                Voucher #:
+                                            </span>
+                                            <%= data.voucher_num %>
+                                        </p>
+                                        <p>
+                                            <span class="font-semibold">
+                                                Date Created:
+                                            </span>
+                                            <%= data.created_at.toLocaleDateString() %>
+                                        </p>
+                                        <p>
+                                            <span class="font-semibold">
+                                                Due Date:
+                                            </span>
+                                            <%= data.due_date.toLocaleDateString() %>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Invoice Items and Total -->
+                                <div>
+                                    <table class="w-full">
+                                        <tr class="bg-primary-200 text-white">
+                                            <th class="text-left p-3">Program Title</th>
+                                            <th class="text-left p-3">Group Size</th>
+                                            <th class="text-left p-3">Price</th>
+                                        </tr>
+
+                                        <tr class="border-b">
+                                            <td class="p-3">
+                                                <%= data.title %>
+                                            </td>
+                                            <td class="p-3">
+                                                <%= data.group_size %>
+                                            </td>
+                                            <td class="p-3">
+                                                <%= data.price %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right p-3 font-bold" colspan="2">Total</td>
+                                            <td class="p-3">
+                                                <%= data.total_amount %>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                 </div>
 
         </main>
 
         <script>
-            const confirmButton = document.querySelector(' .btn-confirm');
+            const confirmButton = document.querySelector('#btn-confirm');
+            const cancelButton = document.querySelector('#btn-cancel');
             const confirmForm = document.querySelector('#confirmation-form');
 
             if (confirmButton && confirmForm) {
                 confirmButton.addEventListener('click', () => {
-                    confirmForm.classList.toggle('hidden');
+                    confirmForm.classList.remove('hidden');
+                    confirmForm.classList.add('flex');
 
-                    confirmButton.innerText =
-                        confirmForm.classList.contains('hidden') ? 'Confirm Payment' : 'Cancel'
-                })
+                    confirmButton.classList.add('hidden');
+                });
+
+                cancelButton.addEventListener('click', () => {
+                    confirmForm.classList.add('hidden');
+                    confirmForm.classList.remove('flex');
+
+                    confirmButton.classList.remove('hidden');
+                });
             }
         </script>
 </body>

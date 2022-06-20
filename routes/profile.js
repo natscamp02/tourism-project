@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 	conn.query(
 		'SELECT urs.*, tcs.company_name FROM users urs, tour_companies tcs WHERE urs.id = ' + req.session.user.id,
 		catchSQLErrors(next, (users) => {
-			res.render('profile/view', { user: users[0] });
+			res.render('profile/view', { account: users[0] });
 		})
 	);
 });

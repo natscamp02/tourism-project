@@ -58,6 +58,13 @@ body {
 main {
 	min-height: 100vh;
 }
+main.dashboard {
+	display: flex;
+	height: 100vh;
+}
+main.dashboard > .container {
+	overflow-y: auto;
+}
 
 .card-description {
 	display: -webkit-box;

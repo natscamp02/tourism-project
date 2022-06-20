@@ -131,7 +131,7 @@ router.get('/:id/accounts/:user_id/edit', (req, res, next) => {
 	conn.query(
 		'SELECT * FROM users WHERE id = ' + req.params.user_id,
 		catchSQLErrors(next, (users) => {
-			res.render('tour-companies/accounts/edit', { user: users[0], company_id: req.params.id });
+			res.render('tour-companies/accounts/edit', { account: users[0], company_id: req.params.id });
 		})
 	);
 });
