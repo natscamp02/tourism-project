@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') -%>
+</head>
+
+<body>
+    <%- include('../partials/alerts') -%>
+
+        <main class="flex">
+            <%- include('../partials/sidebar') -%>
+
+                <div class="container">
+                    <h1 class="">Programs</h1>
+
+                    <p><a href="/programs/add">Add a program</a></p>
+
+                    <table class="w-full text-center">
+                        <thead>
+                            <tr>
+                                <th>Program Title</th>
+                                <th>Price</th>
+                                <th>Duration</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% if (programs.length) { %>
+                                <% programs.forEach(p=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= p.title %>
+                                        </td>
+                                        <td>
+                                            <%= new
+                                                Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(p.price)
+                                                %>
+                                        </td>
+                                        <td>
+                                            <%= p.duration %>
+                                        </td>
+                                        <td>
+                                            <a href="/programs/<%= p.id %>/edit">Edit</a>
+                                            <a href="/programs/<%= p.id %>/delete">Remove</a>
+                                        </td>
+                                    </tr>
+                                    <% }) } else { %>
+                                        <tr>
+                                            <td colspan="4">
+                                                <span>No records found</span>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+
+        </main>
+
+</body>
+
+</html>

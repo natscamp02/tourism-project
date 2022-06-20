@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../../partials/head') -%>
+</head>
+
+<body>
+    <%- include('../../partials/alerts') -%>
+
+        <main class="flex">
+            <%- include('../../partials/sidebar') -%>
+
+                <div class="container">
+                    <h1>
+                        <%= company_name %> - Accounts
+                    </h1>
+
+                    <div>
+                        <a href="/tour-companies/<%= company_id %>/accounts/add">Add an account</a>
+                    </div>
+
+
+                    <table class="w-full text-center">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                                <th>Date Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% if (users.length) { %>
+                                <% users.forEach(user=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= user.first_name %>
+                                        </td>
+                                        <td>
+                                            <%= user.last_name %>
+                                        </td>
+                                        <td>
+                                            <%= user.username %>
+                                        </td>
+                                        <td>
+                                            <%= new Date(user.created_at).toLocaleDateString() %>
+                                        </td>
+                                        <td>
+                                            <a
+                                                href="/tour-companies/<%= company_id %>/accounts/<%= user.id %>/edit">Edit</a>
+                                            <a
+                                                href="/tour-companies/<%= company_id %>/accounts/<%= user.id %>/delete">Remove</a>
+
+                                        </td>
+                                    </tr>
+                                    <% }) } else { %>
+                                        <tr>
+                                            <td colspan="2">
+                                                <span>No records found</span>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+        </main>
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') -%>
+</head>
+
+<body>
+    <%- include('../partials/alerts') -%>
+
+        <main class="flex">
+            <%- include('../partials/sidebar') -%>
+
+                <div class="container">
+                    <h1>Create a booking</h1>
+
+                    <form action="/bookings/add" method="post">
+                        <div class="flex gap-12">
+                            <div>
+                                <label for="first_name">Guest First Name</label>
+                                <input type="text" name="first_name" id="first_name" required>
+                            </div>
+
+                            <div>
+                                <label for="last_name">Guest Last Name</label>
+                                <input type="text" name="last_name" id="last_name" required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="program">Program</label>
+                            <select name="program" id="program" required>
+                                <option value="" selected disabled hidden>-- Select a Program --</option>
+
+                                <% programs.forEach(p=> { %>
+                                    <option value="<%= p.id + '-' + p.price %>">
+                                        <%= p.title %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="location">Location</label>
+                            <select name="location" id="location" required>
+                                <option value="" selected disabled hidden>-- Select a Location --</option>
+
+                                <% locations.forEach(l=> { %>
+                                    <option value="<%= l.id %>">
+                                        <%= l.location %> (<%= l.parish %>)
+                                    </option>
+                                    <% }) %>
+                            </select>
+                        </div>
+
+
+                        <div>
+                            <label for="group_size">Group Size</label>
+                            <input type="number" name="group_size" id="group_size" min="1" max="12" required>
+                        </div>
+
+                        <div class="flex gap-12">
+                            <div>
+                                <label for="start_date">Start Date</label>
+                                <input type="date" name="start_date" id="start_date" required>
+                            </div>
+
+                            <div>
+                                <label for="start_time">Start Time</label>
+                                <input type="time" name="start_time" id="start_time" required>
+                            </div>
+                        </div>
+
+                        <button type="submit">Finish</button>
+                    </form>
+
+                </div>
+
+        </main>
+
+</body>
+
+</html>

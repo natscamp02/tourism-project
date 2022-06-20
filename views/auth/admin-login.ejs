@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') -%>
+</head>
+
+<body>
+    <%- include('../partials/header') -%>
+        <%- include('../partials/alerts') -%>
+
+            <main>
+                <h1>Login as Admin</h1>
+
+                <p>Don't have an account yet? <a href="/auth/signup">Sign up here</a>.</p>
+
+                <form action="/auth/login" method="post">
+                    <div>
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" required>
+                    </div>
+
+                    <div>
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" required>
+                    </div>
+
+                    <button type="submit">Login</button>
+                </form>
+            </main>
+
+            <%- include('../partials/footer') -%>
+</body>
+
+</html>

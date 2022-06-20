@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') -%>
+</head>
+
+<body>
+    <%- include('../partials/alerts') -%>
+
+        <main class="flex">
+            <%- include('../partials/sidebar') -%>
+
+                <div class="container">
+                    <h1 class="">Reservations</h1>
+
+                    <div>
+                        <form action="/bookings/reservations" method="get">
+                            <input type="search" name="search" id="search" placeholder="Search by guest name">
+                        </form>
+                    </div>
+
+                    <table class="w-full text-center">
+                        <thead>
+                            <tr>
+                                <th>Program Title</th>
+                                <th>Guest Name</th>
+                                <th>Group Size</th>
+                                <th>Excursion Date</th>
+                                <th>Date Booked</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% if (results.length) { %>
+                                <% results.forEach(res=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= res.title %>
+                                        </td>
+
+                                        <td>
+                                            <%= res.guest_f_name + ' ' + res.guest_l_name %>
+                                        </td>
+
+                                        <td>
+                                            <%= res.group_size %>
+                                        </td>
+
+                                        <td>
+                                            <%= new Date(res.excursion_date).toLocaleString() %>
+                                        </td>
+
+                                        <td>
+                                            <%= new Date(res.date_booked).toLocaleString() %>
+                                        </td>
+
+                                        <td>
+                                            <a href="/bookings/reservations/<%= res.id %>/approve">Approve</a>
+                                            <a href="/bookings/reservations/<%= res.id %>/deny">Reject</a>
+                                        </td>
+                                    </tr>
+                                    <% }) } else { %>
+                                        <tr>
+                                            <td colspan="6">
+                                                <span>No records found</span>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+
+        </main>
+
+</body>
+
+</html>

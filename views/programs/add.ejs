@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') -%>
+</head>
+
+<body>
+    <%- include('../partials/alerts') -%>
+
+        <main class="flex">
+            <%- include('../partials/sidebar') -%>
+
+                <div class="container">
+                    <h1>Add a new program</h1>
+
+                    <form action="/programs/add" method="post" enctype="multipart/form-data">
+
+                        <div>
+                            <label for="title">Program Title</label>
+                            <input type="text" name="title" id="title" required>
+                        </div>
+
+                        <div>
+                            <label for="description">Description</label>
+                            <textarea name="description" id="description" cols="30" rows="5" required></textarea>
+                        </div>
+
+                        <div>
+                            <label for="duration">Duration</label>
+                            <input type="text" name="duration" id="duration" required>
+                        </div>
+
+                        <div>
+                            <label for="price">Price</label>
+                            <input type="number" name="price" id="price" required>
+                        </div>
+
+                        <div>
+                            <label for="image">Photo</label>
+                            <input type="file" name="image" id="image" accept="image/*">
+                        </div>
+
+
+                        <button type="submit">Add program</button>
+                    </form>
+
+                </div>
+
+        </main>
+
+</body>
+
+</html>

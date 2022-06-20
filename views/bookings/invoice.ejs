@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') -%>
+</head>
+
+<body>
+    <%- include('../partials/alerts') -%>
+
+        <main class="flex">
+            <%- include('../partials/sidebar') -%>
+
+                <div class="container">
+                    <h1 class="">Bookings - Invoice</h1>
+
+                    <div>
+                        <!-- Main Company Name and Address -->
+                        <div>
+                            <h2>Dolphin Cove</h2>
+                            <p>Belmont Road, Ocho Rios</p>
+                            <p>St. Ann</p>
+                        </div>
+
+                        <!-- Billing Company Name and Address -->
+                        <div>
+                            <h2>
+                                <%= data.company_name %>
+                            </h2>
+                            <p>
+                                <%= data.street_address %>, <%= data.city %>
+                            </p>
+                            <p>
+                                <%= data.parish %>
+                            </p>
+                        </div>
+
+                        <!-- Invoice Num. and Dates -->
+                        <div>
+                            <p>Voucher #:
+                                <span>
+                                    <%= data.voucher_num %>
+                                </span>
+                            </p>
+                            <p>Date Created:
+                                <span>
+                                    <%= data.created_at.toLocaleDateString() %>
+                                </span>
+                            </p>
+                            <p>Due Date:
+                                <span>
+                                    <%= data.due_date.toLocaleDateString() %>
+                                </span>
+                            </p>
+                        </div>
+
+                        <!-- Invoice Items and Total -->
+                        <div>
+                            <table>
+                                <tr>
+                                    <th>Program Title</th>
+                                    <th>Group Size</th>
+                                    <th>Price</th>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <%= data.title %>
+                                    </td>
+                                    <td>
+                                        <%= data.group_size %>
+                                    </td>
+                                    <td>
+                                        <%= data.price %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right" colspan="2">Total</td>
+                                    <td>
+                                        <%= data.total_amount %>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <% if (locals.user.role==='admin' && !data.confirmed) { %>
+                            <button class="btn btn-confirm">Confirm Payment</button>
+
+                            <form class="hidden" id="confirmation-form" action="/bookings/invoice/confirm-payment"
+                                method="post">
+                                <input type="hidden" name="voucher_num" id="voucher_num"
+                                    value="<%= data.voucher_num %>">
+
+                                <div>
+                                    <label for="payment_type">Payment Type</label>
+                                    <select name="payment_type" id="payment_type">
+                                        <option value="cash">Cash</option>
+                                        <option value="card">Card</option>
+                                        <option value="credit">Credit</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit">Confirm</button>
+                            </form>
+                            <% } %>
+                    </div>
+                </div>
+
+        </main>
+
+        <script>
+            const confirmButton = document.querySelector(' .btn-confirm');
+            const confirmForm = document.querySelector('#confirmation-form');
+
+            if (confirmButton && confirmForm) {
+                confirmButton.addEventListener('click', () => {
+                    confirmForm.classList.toggle('hidden');
+
+                    confirmButton.innerText =
+                        confirmForm.classList.contains('hidden') ? 'Confirm Payment' : 'Cancel'
+                })
+            }
+        </script>
+</body>
+
+</html>

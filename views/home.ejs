@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head') -%>
+</head>
+
+<body>
+    <%- include('partials/header') -%>
+
+        <main class="">
+            <section class="relative isolate h-screen bg-[url('/images/cover.jpg')] bg-cover bg-no-repeat">
+                <img src="/images/bg.svg" alt="" class="absolute top-0 -left-16 -z-10 w-full h-full">
+
+                <div class="container pt-36">
+                    <div class="mb-2 text-lg text-secondary">Dolphin Cove</div>
+
+
+                    <h1 class="font-heading font-bold mb-6 text-6xl leading-[1.125] uppercase max-w-md">Swim With
+                        The <span class="text-primary">Dolphins</span></h1>
+
+                    <p class="max-w-prose mb-6">Dolphin Cove Jamaica is the place to spend the day
+                        enjoying lots of fun activities here there is something for everyone.
+                    </p>
+
+                    <a class="btn" href="/browse">Browse Our
+                        Programs</a>
+                </div>
+            </section>
+
+            <!-- About -->
+            <section class="bg-gray-50">
+                <div class="container text-center py-20">
+                    <h1 class="heading mb-6">Welcome to Dolphin Cove</h1>
+
+                    <hr class="border-accent border-1">
+
+                    <p class="max-w-[100ch] text-lg text-gray-600 mx-auto mt-6 mb-8">
+                        Did you know that swimming with dolphins is considered one of the top 10 bucket list items? When
+                        you come to Dolphin Cove Jamaica you not only get a chance to live this dream; you have the
+                        opportunity to knock off a few more, like ride a camel and interact with stingrays. Here a place
+                        where you come for the day but remember for a lifetime.
+                    </p>
+
+                    <a class="btn" href="#">Learn More</a>
+                </div>
+            </section>
+
+            <!-- Attractions -->
+            <section>
+                <div class="container py-20">
+                    <h1 class="heading text-center mb-20">Discover Our Programs</h1>
+
+                    <div class="grid grid-cols-2 gap-12 mb-28 mx-auto w-max">
+                        <div>
+                            <img class="w-full h-full object-cover"
+                                src="https://www.dolphincoveja.com/Content/src/program-1.jpg"
+                                alt="Woman holding girl holding dolphin">
+                        </div>
+
+                        <div class="py-4 mt-16">
+                            <h2 class="font-body text-4xl mb-6">A Day of Fun</h2>
+
+                            <p class="max-w-md mb-6">They will give you a kiss and allow you to caress them while
+                                standing
+                                in knee deep water.
+                                This adventure is best for
+                                those who are not comfortable swimming in the sea and the very young.</p>
+
+                            <a href="/browse" class="btn">Discover More</a>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-12 mb-28 mx-auto w-max">
+                        <div class="py-4 mt-16">
+                            <h2 class="font-body text-4xl mb-6">Swim With The Dolphins</h2>
+
+                            <p class="max-w-md mb-6">At Dolphin Cove, interact with one dolphin while swimming in the
+                                deep. Enjoy a kiss, try a dance, perhaps you will get a
+                                splash or two and have a real up close experience.</p>
+
+                            <a href="/browse" class="btn">Discover More</a>
+                        </div>
+
+                        <div>
+                            <img class="w-full h-full object-cover"
+                                src="https://www.dolphincoveja.com/Content/src/program-2.jpg" alt="Woman on surfboard">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-12 mx-auto w-max">
+                        <div>
+                            <img class="w-full h-full object-cover"
+                                src="https://www.dolphincoveja.com/Content/src/program-3.jpg"
+                                alt="Woman on playing with dolphins">
+                        </div>
+
+                        <div class="py-4 mt-16">
+                            <h2 class="font-body text-4xl mb-6">Fun To The Limit</h2>
+
+                            <p class="max-w-md mb-6">The most fun and unique program, designed to exceed all your
+                                expectations.Feel the thrill of foot-push; The dolphins
+                                will rise you above the water surface by pushing you from the soles of your feet.</p>
+
+                            <a href="/browse" class="btn">Discover More</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Book Now -->
+            <section class="bg-blue-50">
+                <div class="container py-20 text-center">
+                    <h1 class="heading">Book A Program Today</h1>
+
+                    <p class="mb-8">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia, id!</p>
+
+                    <a class="btn" href="/browse">Book Now</a>
+                </div>
+            </section>
+        </main>
+
+        <%- include('partials/footer') -%>
+</body>
+
+</html>

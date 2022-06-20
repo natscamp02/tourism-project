@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') -%>
+</head>
+
+<body>
+    <%- include('../partials/alerts') -%>
+
+        <main class="flex">
+            <%- include('../partials/sidebar') -%>
+
+                <div class="container">
+                    <h1 class="">Bookings</h1>
+
+                    <a class="btn" href="/bookings/add">Add a booking</a>
+
+                    <div>
+                        <form action="/bookings" method="get">
+                            <input type="search" name="search" id="search" placeholder="Search">
+                            <select name="filter" id="filter">
+                                <option value="name">By name</option>
+                                <option value="voucher_num">By voucher number</option>
+                            </select>
+                        </form>
+                    </div>
+
+                    <table class="w-full text-center">
+                        <thead>
+                            <tr>
+                                <th>Voucher #</th>
+                                <th>Program Title</th>
+                                <th>Lead Guest Name</th>
+                                <th>Group Size</th>
+                                <th>Booked By</th>
+                                <th>Excursion Date & Time</th>
+                                <th>Date Booked</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% if (results.length) { %>
+                                <% results.forEach(res=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= res.voucher_num %>
+                                        </td>
+
+                                        <td>
+                                            <%= res.title %>
+                                        </td>
+
+                                        <td>
+                                            <%= res.guest_first_name + ' ' + res.guest_last_name %>
+                                        </td>
+
+                                        <td>
+                                            <%= res.group_size %>
+                                        </td>
+
+                                        <td>
+                                            <%= res.company_name %>
+                                        </td>
+
+                                        <td>
+                                            <%= new Date(res.excursion_date).toLocaleString() %>
+                                        </td>
+
+                                        <td>
+                                            <%= new Date(res.date_booked).toLocaleDateString() %>
+                                        </td>
+
+                                        <td>
+                                            <a href="/bookings/<%= res.id %>/invoice">View Invoice</a>
+                                            <a href="/bookings/<%= res.id %>/edit">Edit</a>
+                                            <a href="/bookings/<%= res.id %>/delete">Remove</a>
+                                        </td>
+                                    </tr>
+                                    <% }) } else { %>
+                                        <tr>
+                                            <td colspan="6">
+                                                <span>No records found</span>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+
+        </main>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') -%>
+</head>
+
+<body>
+    <%- include('../partials/alerts') -%>
+
+        <main class="flex">
+            <%- include('../partials/sidebar') -%>
+
+                <div class="container">
+                    <h1>Edit a tour company's information</h1>
+
+                    <form action="/tour-companies/update" method="post">
+                        <input type="hidden" name="company_id" id="company_id" value="<%= company.id %>">
+
+                        <div>
+                            <label for="company_name">Company Name</label>
+                            <input type="text" name="company_name" id="company_name" value="<%= company.company_name %>"
+                                required>
+                        </div>
+
+                        <div>
+                            <label for="street_address">Street Address</label>
+                            <input type="text" name="street_address" id="street_address"
+                                value="<%= company.street_address %>" required>
+                        </div>
+
+                        <div>
+                            <label for="city">City</label>
+                            <input type="text" name="city" id="city" value="<%= company.city %>" required>
+                        </div>
+
+                        <div>
+                            <label for="parish">Parish</label>
+                            <input type="text" name="parish" id="parish" value="<%= company.parish %>" required>
+                        </div>
+
+                        <button type="submit">Save changes</button>
+                    </form>
+
+                </div>
+
+        </main>
+
+</body>
+
+</html>

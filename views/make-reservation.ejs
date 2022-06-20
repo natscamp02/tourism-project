@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head') -%>
+</head>
+
+<body>
+    <%- include('partials/header') -%>
+
+        <main class="bg-gray-50">
+            <div class="container">
+                <h1>Make a reservation</h1>
+
+                <form action="/make-reservation" method="post">
+                    <input type="hidden" name="program_id" id="program_id" value="<%= program_id %>">
+
+                    <div class="flex gap-12">
+                        <div>
+                            <label for="first_name">First Name</label>
+                            <input type="text" name="first_name" id="first_name" required>
+                        </div>
+                        <div>
+                            <label for="last_name">Last Name</label>
+                            <input type="text" name="last_name" id="last_name" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="group_size">Number of Participants</label>
+                        <input type="number" name="group_size" id="group_size" min="0" max="12" required>
+                    </div>
+
+                    <div class="flex gap-12">
+                        <div>
+                            <label for="start_date">Start Date</label>
+                            <input type="date" name="start_date" id="start_date" required>
+                        </div>
+                        <div>
+                            <label for="start_time">Start Time</label>
+                            <input type="time" name="start_time" id="start_time" required>
+                        </div>
+                    </div>
+
+                    <button type="submit">Book Now</button>
+                </form>
+            </div>
+        </main>
+
+        <%- include('partials/footer') -%>
+</body>
+
+</html>

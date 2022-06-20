@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head') -%>
+</head>
+
+<body>
+    <%- include('partials/alerts') -%>
+
+        <%- include('partials/header') -%>
+
+            <main class="pt-20">
+                <div class="container">
+                    <h1 class="heading">Cart</h1>
+
+                    <% if (programs.length) { %>
+                        <table class="w-full text-center">
+                            <thead>
+                                <tr class="bg-blue-800 text-white">
+                                    <th class="p-4 border-r">Program Title</th>
+                                    <th class="p-4 border-r">Description</th>
+                                    <th class="p-4 border-r">Price</th>
+                                    <th class="p-4 border-r">Duration</th>
+                                    <th class="p-4">Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <% programs.forEach(p=> { %>
+                                    <tr class="bg-gray-100 border-b">
+                                        <td class="p-4 border-r">
+                                            <%= p.title %>
+                                        </td>
+                                        <td class="p-4 border-r">
+                                            <p class="mx-auto max-w-prose">
+                                                <%= p.description %>
+                                            </p>
+                                        </td>
+                                        <td class="p-4 border-r">
+                                            <%= new
+                                                Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(p.price)
+                                                %>
+                                        </td>
+                                        <td class="p-4 border-r">
+                                            <%= p.duration %>
+                                        </td>
+                                        <td class="p-4">
+                                            <div class="inline-flex gap-2 items-center justify-center h-full">
+                                                <a href="/make-reservation/<%= p.id %>" class="btn p-2 bg-blue-800">Book
+                                                    Now</a>
+
+                                                <a href="/cart/remove/<%= p.id %>" class="hover:text-red-700">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                        <% } else { %>
+                            <h2 class="text-2xl mt-12">No items found. Programs will be available here once they are
+                                added.</h2>
+                            <% } %>
+                </div>
+
+            </main>
+
+            <%- include('partials/footer') -%>
+</body>
+
+</html>

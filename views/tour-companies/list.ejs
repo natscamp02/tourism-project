@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') -%>
+</head>
+
+<body>
+    <%- include('../partials/alerts') -%>
+
+        <main class="flex">
+            <%- include('../partials/sidebar') -%>
+
+                <div class="container">
+                    <h1 class="">Tour Companies</h1>
+
+                    <p><a href="/tour-companies/add">Add a company</a></p>
+
+                    <table class="w-full text-center">
+                        <thead>
+                            <tr>
+                                <th>Company Name</th>
+                                <th>Street Address</th>
+                                <th>City</th>
+                                <th>Parish</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% if (companies.length) { %>
+                                <% companies.forEach(comp=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= comp.company_name %>
+                                        </td>
+                                        <td>
+                                            <%= comp.street_address %>
+                                        </td>
+                                        <td>
+                                            <%= comp.city %>
+                                        </td>
+                                        <td>
+                                            <%= comp.parish %>
+                                        </td>
+                                        <td>
+                                            <% if (comp.company_type==='other' ) { %>
+                                                <a
+                                                    href="/tour-companies/<%= comp.id %>/accounts?company_name=<%= comp.company_name %>">
+                                                    View Profiles
+                                                </a>
+                                                <a href="/tour-companies/<%= comp.id %>/edit">Edit</a>
+                                                <a href="/tour-companies/<%= comp.id %>/delete">Remove</a>
+                                                <% } %>
+                                        </td>
+                                    </tr>
+                                    <% }) } else { %>
+                                        <tr>
+                                            <td colspan="2">
+                                                <span>No records found</span>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+
+        </main>
+
+</body>
+
+</html>

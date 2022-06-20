@@ -1,0 +1,26 @@
+<aside class="py-4 px-6 text-white bg-blue-900 flex flex-col">
+    <a href="/">
+        <img src="/icons/dc-logo.png" alt="Dolphin Cove" class="w-12 object-contain">
+    </a>
+
+    <nav class="h-full">
+        <ul class="h-full flex flex-col whitespace-nowrap">
+            <li><a href="/bookings">Bookings</a></li>
+            <% if (locals.user.role==='admin' ) { %>
+                <li><a href="/bookings/reservations">Revervations</a></li>
+                <li><a href="/programs">Programs</a></li>
+                <li><a href="/tour-companies">Tour Companies</a></li>
+                <% } %>
+
+                    <li class="mt-auto"><a href="/profile">Profile</a></li>
+                    <li><a href="/auth/logout">
+                            Logout
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                            </svg>
+                        </a></li>
+        </ul>
+    </nav>
+</aside>
